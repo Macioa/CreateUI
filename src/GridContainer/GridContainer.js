@@ -11,7 +11,13 @@ class GridContainer extends Component{
         this.state={
             size:props.size, 
             styleSize: styleSize,
-            style: Object.assign(style, {margin:'auto', display:'grid', gridTemplateColumns: styleSize, gridTemplateRows: styleSize, borderStyle:'solid'})
+            style: Object.assign(style, {
+                margin:'auto', 
+                display:'grid', 
+                gridTemplateColumns: styleSize, 
+                gridTemplateRows: styleSize, 
+                justifyItems: 'center',
+                borderStyle:'solid'})
         }
     }
     constructTiles(){

@@ -6,10 +6,12 @@ class GridTile extends Component{
         super(props)
         let color = ((props.x+props.y)%2)?'white':'black'
         let style = props.style||{}
+        let defaultZ = style.zIndex||0
         this.state={
             x:props.x,
             y:props.y,
-            color:color, 
+            color:color,
+            defaultZ: defaultZ, 
             style: Object.assign(style,{
                 height: '100%',
                 width: '100%',
@@ -19,10 +21,21 @@ class GridTile extends Component{
                 gridColumnEnd: props.x+1, 
                 gridRowStart: props.y,
                 gridRowEnd: props.y+1,
-            })}
+                transition: 'width height 3s',
+                zIndex: defaultZ,
+                overflow: 'visible'
+            })
+        }
+    }
+    handleHoverStart=()=>{ 
+        console.log('hover')
+        this.setState({style:Object.assign(Object.assign({},this.state.style),{height: '110%', width: '110%', zIndex:this.state.defaultZ+1})})    
+    }
+    handleHoverEnd(){
+        this.setState({style:Object.assign(this.state.style,{height: '100%', width: '100%' })})
     }
     render(){ return (
-         <div style={this.state.style}/>
+         <div style={this.state.style} class='tile'/>
     )}
 }
 
