@@ -28,3 +28,4 @@ webpack.config.js
 ---babel
 npm i react react-dom --save-dev
 ---react
+npm i prop-types --save-dev
