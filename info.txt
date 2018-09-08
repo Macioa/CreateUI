@@ -26,3 +26,5 @@ webpack.config.js
       }
     };
 ---babel
+npm i react react-dom --save-dev
+---react
