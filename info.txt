@@ -29,3 +29,41 @@ webpack.config.js
 npm i react react-dom --save-dev
 ---react
 npm i prop-types --save-dev
+create src/index.js, imports app
+create src/index.html
+---react-app
+npm i webpack-dev-server --save-dev
+    "scripts": {
+      "start": "webpack-dev-server --open --mode development",
+      "build": "webpack"
+    }
+
+npm i html-webpack-plugin html-loader --save-dev
+    const HtmlWebPackPlugin = require("html-webpack-plugin");
+    module.exports = {
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: "babel-loader"
+            }
+          },
+          {
+            test: /\.html$/,
+            use: [
+              {
+                loader: "html-loader"
+              }
+            ]
+          }
+        ]
+      },
+      plugins: [
+        new HtmlWebPackPlugin({
+          template: "./src/index.html",
+          filename: "./index.html"
+        })
+      ]
+    };
