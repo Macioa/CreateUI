@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Style from "./assets/stylesheets/app.css"
 
 class App extends Component {
 
