@@ -1,0 +1,28 @@
+https://www.valentinog.com/blog/react-webpack-babel/
+
+npm i webpack --save-dev
+npm i webpack-cli --save-dev
+    "scripts": {
+      "build": "webpack --mode production"
+    }
+---webpack
+npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+.babelrc
+    {
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    }
+webpack.config.js
+    module.exports = {
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: "babel-loader"
+            }
+          }
+        ]
+      }
+    };
+---babel
