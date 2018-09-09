@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import GridContainer from "./GridContainer/GridContainer"
-import Style from "./assets/stylesheets/app.css"
+import "./assets/stylesheets/app.css"
 
 class App extends Component {
 

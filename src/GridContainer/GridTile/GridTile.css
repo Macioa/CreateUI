@@ -1,0 +1,10 @@
+:local(.tile){
+    width: 100%;
+    height: 100%;
+}
+:local(.black){
+    background-color: black;
+}
+:local(.white){
+    background-color: white;
+}

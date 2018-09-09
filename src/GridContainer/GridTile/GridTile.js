@@ -1,42 +1,18 @@
-import React, {Component} from 'react'
-import GridContainer from '../GridContainer';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Style from './GridTile.css'
 
-class GridTile extends Component{
-    constructor(props){
-        super(props)
-        let color = ((props.x+props.y)%2)?'white':'black'
-        let style = props.style||{}
-        let defaultZ = style.zIndex||0
-        this.state={
-            x:props.x,
-            y:props.y,
-            color:color,
-            defaultZ: defaultZ, 
-            style: Object.assign(style,{
-                height: '100%',
-                width: '100%',
-                margin: 'auto',
-                backgroundColor: color, 
-                gridColumnStart: props.x, 
-                gridColumnEnd: props.x+1, 
-                gridRowStart: props.y,
-                gridRowEnd: props.y+1,
-                transition: 'width height 3s',
-                zIndex: defaultZ,
-                overflow: 'visible'
-            })
-        }
-    }
-    handleHoverStart=()=>{ 
-        console.log('hover')
-        this.setState({style:Object.assign(Object.assign({},this.state.style),{height: '110%', width: '110%', zIndex:this.state.defaultZ+1})})    
-    }
-    handleHoverEnd(){
-        this.setState({style:Object.assign(this.state.style,{height: '100%', width: '100%' })})
-    }
-    render(){ return (
-         <div style={this.state.style} class='tile'/>
-    )}
+const GridTile = (props) => {
+    return (<div className={`tile ${((props.x+props.y)%2)?Style.black:Style.white} ${Style.tile}`}
+        style={Object.assign(Object.assign({}, props.style||{}),{
+            gridColumnStart: props.x, 
+            gridColumnEnd: props.x+1, 
+            gridRowStart: props.y,
+            gridRowEnd: props.y+1,
+        })}
+    />)
 }
+
+GridTile.proptypes = { x: PropTypes.number.isRequired, y: PropTypes.number.isRequired }
 
 export default GridTile
