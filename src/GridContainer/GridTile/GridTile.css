@@ -1,11 +1,13 @@
 :local(.tile){
     width: 100%;
     height: 100%;
-    transition: width .5s, height .5s;
+    transition: width .1s, height .1s;
+    z-index:0;
 }
 :local(.tile:hover){
     width: 120%;
     height: 120%;
+    transition: width .5s, height .5s;
     z-index: 1;
 }
 :local(.black){

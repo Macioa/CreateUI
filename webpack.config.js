@@ -43,6 +43,11 @@ module.exports = {
       }
     ]
   },
+  devServer: { //object
+    port: process.env.PORT||8080,
+    //content: './dist',
+    // ...
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",

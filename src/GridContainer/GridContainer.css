@@ -1,4 +1,5 @@
 :local(.GridContainer){
     justify-items: center;
     align-items: center;
+    border-style: solid;
 }
