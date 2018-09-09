@@ -9,14 +9,14 @@ class DraggableDiv extends Component {
         this.onRelease = props.onRelease
         var style = Object.freeze(props.style||{})
         Object.defineProperty(this, 'style',{get:function(){return Object.assign({}, style)}})
-        this.state={dragging:true, cloneStyle: this.style}
+        this.state={dragging:false, cloneStyle: this.style, showOriginal: props.showOriginal||false}
      }
     componentDidMount(){
         this.setState({ draggin:false,cloneStyle:Object.assign(this.style,{width: this.ref.current.offsetWidth, height: this.ref.current.offsetHeight}) })
     }
     shouldComponentUpdate(){return this.state.dragging}
     updateDragLocation=(e)=>{
-        this.setState({cloneStyle:Object.assign(Object.assign({},this.state.cloneStyle),{top: e.clientY, left: e.clientX})})
+        this.setState({cloneStyle:Object.assign(Object.assign({},this.state.cloneStyle),{top: e.clientY-this.state.cloneStyle.height/2, left: e.clientX-this.state.cloneStyle.width/2})})
     }
     handleStartDrag=(e)=>{
         this.setState({dragging:true})
@@ -31,7 +31,8 @@ class DraggableDiv extends Component {
     }
     render(){
         return(
-            <div className="draggableDiv" draggable="true" ref={this.ref} onDragStart={this.handleStartDrag} style={this.style}>
+            <div className={`dragContainer`} style={!this.state.dragging?this.style:{}}>
+            {(this.state.showOriginal||(!this.state.dragging))?<div className={`draggableDiv`} draggable="true" ref={this.ref} onDragStart={this.handleStartDrag} style={this.style}/>:''}
             {this.state.dragging?<div id="dragClone" className={`dragClone ${Styles.dragClone}`} style={this.state.cloneStyle}/>:''}
             </div>
         )
