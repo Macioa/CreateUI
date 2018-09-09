@@ -1,7 +1,7 @@
 import React from 'react'
 import GridTile from './GridTile/GridTile'
 import PropTypes from 'prop-types'
-
+import Style from './GridContainer.css'
 
 const GridContainer = (props) => {
     let styleSize = ''
@@ -11,7 +11,7 @@ const GridContainer = (props) => {
         for (let y = 1; y<=props.size; y++)
             tileArray.push(<GridTile x={x} y={y} key={`${x}-${y}`}/>)
     return (
-        <div id='GridContainer' className='GridContainer' style={Object.assign(Object.assign({},props.style||{}),{
+        <div id='GridContainer' className={`GridContainer ${Style.GridContainer}`} style={Object.assign(Object.assign({},props.style||{}),{
                 display:'grid', 
                 gridTemplateColumns: styleSize, 
                 gridTemplateRows: styleSize,
