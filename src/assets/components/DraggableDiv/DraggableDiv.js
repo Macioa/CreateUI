@@ -27,7 +27,7 @@ class DraggableDiv extends Component {
         document.removeEventListener('mousemove', this.updateDragLocation)
         document.removeEventListener('mouseup', this.handleStopDrag)
         this.setState({dragging:false})
-        console.log(e.target)
+        this.onRelease(e)
     }
     render(){
         return(
