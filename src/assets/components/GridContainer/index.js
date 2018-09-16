@@ -1,5 +1,5 @@
 import React from 'react'
-import GridTile from './GridTile/GridTile'
+import GridTile from './GridTile'
 import PropTypes from 'prop-types'
 import Style from './GridContainer.css'
 

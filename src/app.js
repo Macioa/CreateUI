@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import GridContainer from "./GridContainer/GridContainer"
-import DraggableDiv from './assets/components/DraggableDiv/DraggableDiv.js'
-import "./assets/stylesheets/app.css"
+import GridContainer from "Components/GridContainer"
+import DraggableDiv from 'Components/DraggableDiv'
+import "Stylesheets/app.css"
 
 class App extends Component {
 
