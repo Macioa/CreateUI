@@ -1,0 +1,12 @@
+:local(.container){
+    display: grid;
+}
+:local(.GridContainer){
+    grid-column-start: 1;
+    grid-column-end: 2;
+    height: 100%;
+}
+:local(.TokenList){
+    grid-column: 2 3;
+    height: 100%;
+}

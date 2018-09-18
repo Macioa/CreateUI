@@ -11,7 +11,7 @@ const GridContainer = (props) => {
         for (let y = 1; y<=props.size; y++)
             tileArray.push(<GridTile x={x} y={y} key={`${x}-${y}`}/>)
     return (
-        <div id='GridContainer' className={`GridContainer ${Style.GridContainer}`} style={Object.assign(Object.assign({},props.style||{}),{
+        <div id='GridContainer' className={`GridContainer ${props.className} ${Style.GridContainer}`} style={Object.assign(Object.assign({},props.style||{}),{
                 display:'grid', 
                 gridTemplateColumns: styleSize, 
                 gridTemplateRows: styleSize,
