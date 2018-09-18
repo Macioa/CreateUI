@@ -4,8 +4,6 @@ import DraggableDiv from 'Components/DraggableDiv'
 import Styles from './TokenList.css'
 
 const TokenList = (props) => {
-    console.log(props.tokens)
-    console.log(props.tokens.map((token)=>{return <li>{token.name}</li>}))
     return (
         <div className = 'container'>
             <h4>Tokens</h4>
