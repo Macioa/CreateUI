@@ -6,9 +6,9 @@ import Styles from './TokenList.css'
 const TokenList = (props) => {
     return (
         <div className = 'container'>
-            <h4>Tokens</h4>
             <ul>
-                { props.tokens.map((token)=>{return <li><DraggableDiv style={{height:'25px',width:'25px',backgroundColor:'red'}}/>{token.name}</li>}) }
+                <h4>Tokens</h4>
+                { props.tokens.map((token,i)=>{ return <li key={i}>{token.name}<DraggableDiv className={Styles.token}/></li> }) }
             </ul>
 
         </div>
