@@ -8,7 +8,7 @@ const TokenList = (props) => {
         <div className = 'container'>
             <ul>
                 <h4>Tokens</h4>
-                { props.tokens.map((token,i)=>{ return <li key={i}>{token.name}<DraggableDiv className={Styles.token} style={{backgroundImage:'Images/queen.jpg'}}/></li> }) }
+                { props.tokens.map((token,i)=>{ return <li key={i}>{token.name}<DraggableDiv className={Styles.token} style={{backgroundImage:`url(${token.image})`}}/></li> }) }
             </ul>
 
         </div>

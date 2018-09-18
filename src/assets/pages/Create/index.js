@@ -9,6 +9,7 @@ class CreatePage extends Component {
     constructor (props) {
         super(props)
         this.state={tokens:Actions.getTokens,height:null}
+        console.log(this.state.tokens)
     }
     componentDidMount(){ this.checkHeight(); window.addEventListener('resize',()=>{this.checkHeight()})}
     componentDidUpdate(){ this.checkHeight(); }

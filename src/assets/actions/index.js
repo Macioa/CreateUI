@@ -1,8 +1,10 @@
+import Queen from 'Images/queen.jpg'
+
 const Actions = {
     getTokens: [
-        { name: 'king', image: 'Images/queen.jpg' },
-        { name: 'queen', image: 'Images/queen.jpg' },
-        { name: 'rook', image: 'Images/queen.jpg' }
+        { name: 'king', image: Queen },
+        { name: 'queen', image: Queen },
+        { name: 'rook', image: Queen }
     ]
 }
 export default Actions
