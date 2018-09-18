@@ -48,7 +48,8 @@ module.exports = {
       Components: path.resolve(__dirname, 'src/assets/components'),
       Pages: path.resolve(__dirname, 'src/assets/pages'),
       Actions: path.resolve(__dirname, 'src/assets/actions'),
-      Stylesheets: path.resolve(__dirname, 'src/assets/stylesheets')
+      Stylesheets: path.resolve(__dirname, 'src/assets/stylesheets'),
+      Images: path.resolve(__dirname, 'src/assets/images')
     }
   },
   plugins: [

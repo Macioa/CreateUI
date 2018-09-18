@@ -6,15 +6,15 @@ import Styles from './DraggableDiv.css'
 class DraggableDiv extends Component {
     constructor (props){
         super(props)
+        console.log(props.style)
         this.ref = React.createRef()
         this.onRelease = props.onRelease
-        //var style = Object.freeze({...props.style})
-        //Object.defineProperty(this, 'style',{get:function(){return Object.assign({}, style)}})
-        this.state={dragging:false, cloneStyle: null, showOriginal: props.showOriginal||true}
+        this.state={dragging:false, cloneStyle: null, showOriginal: props.showOriginal||false}
      }
      getStyle = (node) => {
             let ComputedStyle = window.getComputedStyle(node)
-            let diff = {}, res = {}
+            console.log(ComputedStyle)
+            let diff = {}
             let root = window.getComputedStyle(document.getElementById('root'))
             for (let key in ComputedStyle)
                 if (ComputedStyle[key]!==root[key])
@@ -29,27 +29,24 @@ class DraggableDiv extends Component {
             return diff
         }   
     componentDidMount(){
-        this.setState({ dragging:false,
-                        cloneStyle:this.getStyle(this.ref.current)
-        },()=>{console.log(this.state)})
         window.addEventListener('resize',()=>{ 
-            if ((this.ref.current.offsetHeight!=this.state.cloneStyle.height)||(this.ref.current.offsetWidth!=this.state.cloneStyle.width))
+            let style = window.getComputedStyle(this.ref.current)
+            if ( ( style.getPropertyValue('height')!=this.state.cloneStyle.height ) || ( style.getPropertyValue('width')!=this.state.cloneStyle.width ) )
                 this.setState({cloneStyle:this.getStyle(this.ref.current)})
         })
+        this.setState({ cloneStyle:this.getStyle(this.ref.current) })
     }
     shouldComponentUpdate(){ return this.state.dragging }
     updateDragLocation=(e)=>{
-        console.log(e.clientY-this.state.cloneStyle.height.replace('px','')/2)
-        console.log(this.state.cloneStyle.height)
         let time = new Date()
         if ((time-this.renderTime)>16){
             this.setState({
                 cloneStyle:{
                     ...this.state.cloneStyle, 
-                    top: e.clientY-this.state.cloneStyle.height.replace('px','')/2, 
-                    left: e.clientX-this.state.cloneStyle.width.replace('px','')/2
+                    top: e.clientY-this.state.cloneStyle.height.replace('px','')/2+'px', 
+                    left: e.clientX-this.state.cloneStyle.width.replace('px','')/2+'px'
                 }
-            }, ()=>console.log(this.state))
+            })
             this.renderTime=time;
         }
     }
@@ -67,7 +64,7 @@ class DraggableDiv extends Component {
     }
     render(){
         return(
-            <div className={`dragContainer`} style={{width:'100%',height:'100%'}}>
+            <div className={`dragContainer ${this.props.className}`} style={{width:'100%',height:'100%'}}>
             {(this.state.showOriginal||!this.state.dragging)?<div className={`draggableDiv ${this.props.className}`} draggable="true" ref={this.ref} onDragStart={this.handleStartDrag} style={this.props.style}/>:''}
             {this.state.dragging?<div id="dragClone" className={`dragClone ${Styles.dragClone}`} style={this.state.cloneStyle} />:''}
             </div>
