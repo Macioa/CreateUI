@@ -4,6 +4,7 @@ import Style from './GridTile.css'
 
 const GridTile = (props) => {
     return (<div className={`tile ${((props.x+props.y)%2)?Style.black:Style.white} ${Style.tile}`}
+        id={`tile ${props.x} ${props.y}`}
         style={Object.assign(Object.assign({}, props.style||{}),{
             gridColumnStart: props.x, 
             gridColumnEnd: props.x+1, 

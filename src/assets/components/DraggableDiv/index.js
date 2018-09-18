@@ -6,26 +6,25 @@ import Styles from './DraggableDiv.css'
 class DraggableDiv extends Component {
     constructor (props){
         super(props)
-        console.log(props.style)
         this.ref = React.createRef()
         this.onRelease = props.onRelease
         this.state={dragging:false, cloneStyle: null, showOriginal: props.showOriginal||false}
      }
      getStyle = (node) => {
             let ComputedStyle = window.getComputedStyle(node)
-            console.log(ComputedStyle)
+            //console.log(ComputedStyle)
             let diff = {}
             let root = window.getComputedStyle(document.getElementById('root'))
             for (let key in ComputedStyle)
                 if (ComputedStyle[key]!==root[key])
                     if (!(key.split('-').length-1)){
                         let keyid=key.toLowerCase(); let returnVal=true
-                        let ignored=['transform','perspective','origin','inlinesize','blocksize']
+                        let ignored=['transform','origin','inlinesize','blocksize']
                         for (let ignore of ignored)
                             if (keyid.indexOf(ignore)!==-1) returnVal=false;
                         if (returnVal) diff[key]=ComputedStyle[key]
                     }
-            console.log(diff)
+            //console.log(diff)
             return diff
         }   
     componentDidMount(){
@@ -60,18 +59,31 @@ class DraggableDiv extends Component {
         document.removeEventListener('mousemove', this.updateDragLocation)
         document.removeEventListener('mouseup', this.handleStopDrag)
         this.setState({dragging:false})
-        this.onRelease(e)
+        if (this.onRelease)
+            this.onRelease(e, this.props.object)
     }
     render(){
         return(
             <div className={`dragContainer ${this.props.className}`} style={{width:'100%',height:'100%'}}>
-            {(this.state.showOriginal||!this.state.dragging)?<div className={`draggableDiv ${this.props.className}`} draggable="true" ref={this.ref} onDragStart={this.handleStartDrag} style={this.props.style}/>:''}
-            {this.state.dragging?<div id="dragClone" className={`dragClone ${Styles.dragClone}`} style={this.state.cloneStyle} />:''}
+                {(this.state.showOriginal||!this.state.dragging)?
+                    <div 
+                        className={`draggableDiv ${this.props.className}`} 
+                        draggable="true" ref={this.ref} 
+                        onDragStart={this.handleStartDrag} 
+                        style={this.props.style}
+                    />
+                :''}
+                {this.state.dragging?
+                    <div id="dragClone" 
+                        className={`dragClone ${Styles.dragClone}`} 
+                        style={this.state.cloneStyle} 
+                    />
+                :''}
             </div>
         )
     }
 }
 
-DraggableDiv.proptypes = { onRelease: PropTypes.func.isRequired }
+DraggableDiv.proptypes = { onRelease: PropTypes.func, showOriginal: PropTypes.bool, object: PropTypes.object }
 
 export default DraggableDiv
