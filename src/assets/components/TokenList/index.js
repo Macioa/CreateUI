@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import DraggableDiv from 'Components/DraggableDiv'
 import Styles from './TokenList.css'
 
 const TokenList = (props) => {
@@ -8,17 +7,19 @@ const TokenList = (props) => {
         <div className = 'container'>
             <ul>
                 <h4>Tokens</h4>
-                { props.tokens.map((token,i)=>{ return <li key={i}>{token.name}<DraggableDiv                            className={Styles.token} 
-                            style={{backgroundImage:`url(${token.image})`}} 
-                            object={token} 
-                            showOriginal={true}
-                            onRelease={props.onTokenRelease}/></li> }) }    
+                { Object.values(props.tokens).map((token,i)=>{ return <li key={token.id}>{token.name}<br/><img                            className={Styles.token} 
+                            src={token.image}
+                            id={`token-${token.id}`}
+                            draggable={true}
+                            style={{height:'25px',width:'25px'}}
+                            onDrag={props.dragEvents.start}
+                /></li> }) }    
             </ul>
 
         </div>
     )
 }
 
-TokenList.proptypes = { tokens: PropTypes.array.isRequired, onTokenRelease: PropTypes.func.isRequired}
+TokenList.proptypes = { tokens: PropTypes.array.isRequired }
 
 export default TokenList
