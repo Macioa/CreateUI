@@ -16,6 +16,7 @@ class CreatePage extends Component {
             tokens:game.availableTokens,
             boardSize:game.boardSize,
             height:null,
+            width:null,
             placedTokens:placedTokens
         }
         this.dragEvents={
@@ -39,7 +40,7 @@ class CreatePage extends Component {
 
     placeToken(id, coord){
         let placedTokens = this.getPlacedTokens()
-        placedTokens[coord[0]][coord[1]]=this.state.tokens[id]
+        placedTokens[coord[0]][coord[1]] = Object.assign( {...this.state.tokens[id]} , {uniqueid:`${id}-${coord[0]}-${coord[1]}`} )
         this.setState({placedTokens:placedTokens})
     }
 

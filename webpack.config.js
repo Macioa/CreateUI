@@ -3,15 +3,16 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const path = require('path');
 
-module.exports = {
+module.exports =  (env = {}) => ({
+  entry: env.testing ? './test/index.js' : './src/index.js',
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+        },
       },
       {
         test: /\.html$/,
@@ -73,4 +74,4 @@ module.exports = {
       chunkFilename: "[id].css"
     })
   ]
-};
+});

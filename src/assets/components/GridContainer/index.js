@@ -16,14 +16,18 @@ const GridContainer = (props) => {
                 tokenArray.push(<div className={TileStyle.tile} style={{
                                         gridColumn: x+'/'+x, 
                                         gridRow: y+'/'+y,
-                                        }}>
+                                        }}
+                                        key={`${props.placedTokens[x][y].id}-${x}-${y}`}
+                                    >
                                     <img 
                                         src={props.placedTokens[x][y].image}
                                         style={{
                                             zIndex: '10',
                                             width:'100%',
-                                            height:'100%'
+                                            height:'100%',
+                                            
                                         }}
+                                        key={`img${props.placedTokens[x][y].id}-${x}-${y}`}
                                     />
                                 </div>)
             }
